@@ -90,25 +90,31 @@ int main()
                                                     vF=true;
                                                 }
                                         }
-                                        if(vF)
-                                        {
-                                            if(lineCode[i]!=';' && lineCode[i]!='=')
+                                        else
+                                            if(vF)
                                             {
-                                                v+=lineCode[i];
+                                                if(lineCode[i]!=';' && lineCode[i]!='=')
+                                                {
+                                                    v+=lineCode[i];
+                                                }
+                                                else
+                                                {
+                                                    vF=false;
+                                                }
                                             }
                                             else
-                                            {
-                                                vF=false;
-                                            }
-                                        }
-                                        else
-                                            break;
+                                                break;
 
                                     }
-
-
-
-                                    error=false;
+                                    if(SEM.declararVariable(t,v))
+                                    {
+                                        error=false;
+                                    }
+                                    else
+                                    {
+                                        error=true;
+                                        cout<<"La variable \""<<v<<"\" ya ha sido previamente declarada. ";
+                                    }
                                 }
                                 else
                                     if(SIN.sintaxWhile(lineCode))
