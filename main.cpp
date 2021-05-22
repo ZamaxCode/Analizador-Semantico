@@ -1,13 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include <analizadorsintactico.h>
+#include <analizadorsemantico.h>
 
 using namespace std;
 
 int main()
 {
     fstream code;
-    AnalizadorSintactico AS;
+    AnalizadorSintactico SIN;
+    AnalizadorSemantico SEM;
     string codeName, lineCode, lineBefore="", lineBeBefor="";
     int cont=1, contLlaves=0, contDo=0;
     bool open=false;
@@ -38,26 +40,26 @@ int main()
     {
         bool error;
         getline(code, lineCode,'\n');
-        if(AS.sintaxAssign(lineCode))
+        if(SIN.sintaxAssign(lineCode))
             error=false;
         else
-            if(AS.sintaxCin(lineCode))
+            if(SIN.sintaxCin(lineCode))
             error=false;
             else
-                if(AS.sintaxCout(lineCode))
+                if(SIN.sintaxCout(lineCode))
                     error=false;
                 else
-                    if(AS.sintaxFor(lineCode))
+                    if(SIN.sintaxFor(lineCode))
                         error=false;
                     else
-                        if(AS.sintaxIf(lineCode))
+                        if(SIN.sintaxIf(lineCode))
                         {
                             error=false;
                         }
                         else
-                            if(AS.sintaxElse(lineCode))
+                            if(SIN.sintaxElse(lineCode))
                             {
-                                if(AS.sintaxBracketClose(lineBefore)||AS.sintaxIf(lineBeBefor))
+                                if(SIN.sintaxBracketClose(lineBefore)||SIN.sintaxIf(lineBeBefor))
                                 {
                                     error=false;
                                 }
@@ -68,18 +70,56 @@ int main()
                                 }
                             }
                             else
-                                if(AS.sintaxInitialVar(lineCode))
+                                if(SIN.sintaxInitialVar(lineCode))
+                                {
+                                    string t="", v="";
+                                    bool tF=true, vF=false;
+                                    for(size_t i(0);i<lineCode.size();++i)
+                                    {
+                                        if(tF)
+                                        {
+                                            if(lineCode[i]=='\t'){}
+                                            else
+                                                if(lineCode[i]!=' ')
+                                                {
+                                                    t+=lineCode[i];
+                                                }
+                                                else
+                                                {
+                                                    tF=false;
+                                                    vF=true;
+                                                }
+                                        }
+                                        if(vF)
+                                        {
+                                            if(lineCode[i]!=';' && lineCode[i]!='=')
+                                            {
+                                                v+=lineCode[i];
+                                            }
+                                            else
+                                            {
+                                                vF=false;
+                                            }
+                                        }
+                                        else
+                                            break;
+
+                                    }
+
+
+
                                     error=false;
+                                }
                                 else
-                                    if(AS.sintaxWhile(lineCode))
+                                    if(SIN.sintaxWhile(lineCode))
                                         error=false;
                                     else
-                                        if(AS.emptyLine(lineCode))
+                                        if(SIN.emptyLine(lineCode))
                                             error=false;
                                         else
-                                            if(AS.sintaxBracketOpen(lineCode))
+                                            if(SIN.sintaxBracketOpen(lineCode))
                                             {
-                                                if(AS.sintaxIf(lineBefore)||AS.sintaxFor(lineBefore)||AS.sintaxWhile(lineBefore)||AS.sintaxElse(lineBefore))
+                                                if(SIN.sintaxIf(lineBefore)||SIN.sintaxFor(lineBefore)||SIN.sintaxWhile(lineBefore)||SIN.sintaxElse(lineBefore))
                                                 {
                                                     error=false;
                                                     ++contLlaves;
@@ -91,7 +131,7 @@ int main()
                                                 }
                                             }
                                             else
-                                                if(AS.sintaxBracketClose(lineCode))
+                                                if(SIN.sintaxBracketClose(lineCode))
                                                 {
                                                     --contLlaves;
                                                     if(contLlaves<0)
@@ -104,13 +144,13 @@ int main()
                                                         error=false;
                                                 }
                                                 else
-                                                    if(AS.sintaxDo(lineCode))
+                                                    if(SIN.sintaxDo(lineCode))
                                                     {
                                                         error=false;
                                                         ++contDo;
                                                     }
                                                     else
-                                                        if(AS.sintaxWhileDo(lineCode))
+                                                        if(SIN.sintaxWhileDo(lineCode))
                                                         {
                                                             --contDo;
                                                             if(contDo<0)
