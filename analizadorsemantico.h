@@ -14,6 +14,7 @@ class AnalizadorSemantico
 public:
     AnalizadorSemantico();
     bool declararVariable(const string lineCode);
+    bool checarExistencia(const string v1, const string v2, const string v3);
 
 private:
     vector<Variables> varArray;
