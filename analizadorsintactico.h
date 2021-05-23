@@ -4,7 +4,7 @@
 #define RegExpElse "(\\t*)?else"
 #define RegExpFor "(\\t*)?for\\((int\\s)?[a-zA-Z]([a-zA-Z]|\\d|_)*=\\d\\;([a-zA-Z]([a-zA-Z]|\\d|_)*)(<|>|<=|=>|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\;[a-zA-Z]([a-zA-Z]|\\d|_)*(\\+\\+|\\-\\-)\\)"
 #define RegExpWhile "(\\t*)?while\\(([a-zA-Z]([a-zA-Z]|\\d|_)*)(<|>|<=|=>|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\)"
-#define RegExpIniVar "(\\t*)?(int|float|string)\\s[a-zA-Z]([a-zA-Z]|\\d|)*(\\=(([+-]?(\\d[.])?\\d+)|\".*\"|(\\d)))?;"
+#define RegExpIniVar "(\\t*)?(int|float|string)\\s[a-zA-Z]([a-zA-Z]|\\d|)*(=(([a-zA-Z]([a-zA-Z]|\\d|_)*)|\".*\"|([+-]?(\\d*[.])?\\d+)*))?;"
 #define RegExpCout "(\\t*)?cout(<<\"(.)*\"|(<<[a-zA-Z]([a-zA-Z]|\\d|_)*))+;"
 #define RegExpCin "(\\t*)?cin>>[a-zA-Z]([a-zA-Z]|\\d|_)*;"
 #define RegExpAssign "(\\t*)?[a-zA-Z]([a-zA-Z]|\\d|_)*=(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))[\\+\\-\\*/](([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+));"

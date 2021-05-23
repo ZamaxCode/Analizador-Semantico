@@ -72,48 +72,14 @@ int main()
                             else
                                 if(SIN.sintaxInitialVar(lineCode))
                                 {
-                                    string t="", v="";
-                                    bool tF=true, vF=false;
-                                    for(size_t i(0);i<lineCode.size();++i)
-                                    {
-                                        if(tF)
-                                        {
-                                            if(lineCode[i]=='\t'){}
-                                            else
-                                                if(lineCode[i]!=' ')
-                                                {
-                                                    t+=lineCode[i];
-                                                }
-                                                else
-                                                {
-                                                    tF=false;
-                                                    vF=true;
-                                                }
-                                        }
-                                        else
-                                            if(vF)
-                                            {
-                                                if(lineCode[i]!=';' && lineCode[i]!='=')
-                                                {
-                                                    v+=lineCode[i];
-                                                }
-                                                else
-                                                {
-                                                    vF=false;
-                                                }
-                                            }
-                                            else
-                                                break;
 
-                                    }
-                                    if(SEM.declararVariable(t,v))
+                                    if(SEM.declararVariable(lineCode))
                                     {
                                         error=false;
                                     }
                                     else
                                     {
                                         error=true;
-                                        cout<<"La variable \""<<v<<"\" ya ha sido previamente declarada. ";
                                     }
                                 }
                                 else
