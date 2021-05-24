@@ -1,0 +1,45 @@
+cout<<"Hola mundo!";
+
+int a=15;
+float b=a;
+string c="hola";
+string d=c;
+d="hola";
+a=3;
+cin>>d;
+
+c="pepe";
+
+if(c==d)
+	cout<<"c y d son iguales";
+
+if(a<b)
+	cout<<a<<" es menor a "<<b;
+else
+	cout<<a<<" es mayor a "<<b;
+int i;
+for(i=0;i<a;i++)
+{
+	if(a>=b)
+		a=a-1;
+	else
+	{
+		a=a+1;
+	}
+	cout<<a;
+}
+
+int n=0;
+while(n<5)
+{
+	cout<<n;
+	n=n+1;
+}
+
+do{
+	a=b+1;
+	cout<<a;
+	do{
+		b=b+1;
+	}while(b<=a);
+}while(a<=50);
