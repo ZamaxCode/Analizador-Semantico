@@ -15,9 +15,13 @@ public:
     string getVariable() const;
     void setVariable(const string &value);
 
+    bool getUsada() const;
+    void setUsada(bool value);
+
 private:
     string tipo;
     string variable;
+    bool usada;
 };
 
 #endif // VARIABLES_H

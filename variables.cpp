@@ -24,3 +24,13 @@ void Variables::setVariable(const string &value)
 {
     variable = value;
 }
+
+bool Variables::getUsada() const
+{
+    return usada;
+}
+
+void Variables::setUsada(bool value)
+{
+    usada = value;
+}

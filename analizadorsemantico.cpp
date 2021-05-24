@@ -75,6 +75,7 @@ bool AnalizadorSemantico::declararVariable(const string lineCode)
                 {
                     if(a==varArray.at(j).getVariable())
                     {
+                        varArray[j].setUsada(true);
                         if( (varArray.at(j).getTipo()=="string" && (t=="int" || t=="float)")) || (t=="string" && (varArray.at(j).getTipo()=="int" || varArray.at(j).getTipo()=="float)")) )
                         {
                             cout<<"La variable \""<<v<<"\" no es compatible con \""<<a<<"\". ";
@@ -107,6 +108,7 @@ bool AnalizadorSemantico::declararVariable(const string lineCode)
     Variables newVar;
     newVar.setVariable(v);
     newVar.setTipo(t);
+    newVar.setUsada(false);
     varArray.push_back(newVar);
     return true;
 }
@@ -134,6 +136,7 @@ bool AnalizadorSemantico::checarExistencia(const string v1, const string v2, con
             {
                 if(v1==varArray.at(j).getVariable())
                 {
+                    varArray[j].setUsada(true);
                     if(varArray.at(j).getTipo()=="string")
                         wi1="s";
                     else
@@ -167,6 +170,7 @@ bool AnalizadorSemantico::checarExistencia(const string v1, const string v2, con
                 {
                     if(v2==varArray.at(j).getVariable())
                     {
+                        varArray[j].setUsada(true);
                         if(varArray.at(j).getTipo()=="string")
                             wi2="s";
                         else
@@ -202,6 +206,7 @@ bool AnalizadorSemantico::checarExistencia(const string v1, const string v2, con
                     {
                         if(v3==varArray.at(j).getVariable())
                         {
+                            varArray[j].setUsada(true);
                             if(varArray.at(j).getTipo()=="string")
                                 wi3="s";
                             else
@@ -245,4 +250,15 @@ bool AnalizadorSemantico::checarExistencia(const string v1, const string v2, con
         }
     }
 
+}
+
+void AnalizadorSemantico::buscarNoUsadas()
+{
+    for(size_t i(0); i<varArray.size();++i)
+    {
+        if(!varArray.at(i).getUsada())
+        {
+            cout<<"WARNING: La variable \""<<varArray.at(i).getVariable()<<"\" no ha sido utilizada."<<endl;
+        }
+    }
 }

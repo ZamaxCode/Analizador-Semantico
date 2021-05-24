@@ -517,6 +517,8 @@ int main()
             if(noneError)
                 cout<<"Sintaxis correcta!"<<endl;
 
+    SEM.buscarNoUsadas();
+
     code.close();
     return 0;
 }
