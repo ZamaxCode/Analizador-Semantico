@@ -40,19 +40,43 @@ int main()
     {
         bool error;
         getline(code, lineCode,'\n');
-        if(SIN.sintaxAssign(lineCode))
+        if(SIN.sintaxAssign(lineCode))//here
             error=false;
         else
-            if(SIN.sintaxCin(lineCode))
-            error=false;
-            else
-                if(SIN.sintaxCout(lineCode))
+            if(SIN.sintaxCin(lineCode))//here
+            {
+                string v="";
+                bool bv=false;
+                for(size_t j(0);j<lineCode.size();++j)
+                {
+                    if(!bv){
+                        if(lineCode[j]=='\t'){}
+                        else
+                        {
+                            j+=4;
+                            bv=true;
+                        }
+                    }
+                    else
+                    {
+                        if(lineCode[j]==';')
+                            break;
+                        v+=lineCode[j];
+                    }
+                }
+                if(SEM.checarExistencia(v,"",""))
                     error=false;
                 else
-                    if(SIN.sintaxFor(lineCode))
+                    error=true;
+            }
+            else
+                if(SIN.sintaxCout(lineCode))//here
+                    error=false;
+                else
+                    if(SIN.sintaxFor(lineCode))//here
                         error=false;
                     else
-                        if(SIN.sintaxIf(lineCode))
+                        if(SIN.sintaxIf(lineCode))//here
                         {
                             error=false;
                         }
@@ -72,7 +96,6 @@ int main()
                             else
                                 if(SIN.sintaxInitialVar(lineCode))
                                 {
-
                                     if(SEM.declararVariable(lineCode))
                                     {
                                         error=false;
@@ -83,7 +106,7 @@ int main()
                                     }
                                 }
                                 else
-                                    if(SIN.sintaxWhile(lineCode))
+                                    if(SIN.sintaxWhile(lineCode))//here
                                         error=false;
                                     else
                                         if(SIN.emptyLine(lineCode))
@@ -122,7 +145,7 @@ int main()
                                                         ++contDo;
                                                     }
                                                     else
-                                                        if(SIN.sintaxWhileDo(lineCode))
+                                                        if(SIN.sintaxWhileDo(lineCode))//here
                                                         {
                                                             --contDo;
                                                             if(contDo<0)

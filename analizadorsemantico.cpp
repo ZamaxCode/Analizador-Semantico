@@ -96,7 +96,6 @@ bool AnalizadorSemantico::declararVariable(const string lineCode)
                     return false;
                 }
     }
-
     for(size_t i(0);i<varArray.size();++i)
     {
         if(v==varArray.at(i).getVariable())
@@ -152,7 +151,6 @@ bool AnalizadorSemantico::checarExistencia(const string v1, const string v2, con
     //Para dos variables
     if(v2.size()>0)
     {
-        regex numReg(NumSintax);
         if(v2[0]=='"')
         {
             wi2="s";
@@ -188,7 +186,6 @@ bool AnalizadorSemantico::checarExistencia(const string v1, const string v2, con
         //Para tres variables
         if(v3.size()>0)
         {
-            regex numReg(NumSintax);
             if(v3[0]=='"')
             {
                 wi3="s";
