@@ -43,18 +43,19 @@ int main()
         if(SIN.sintaxAssign(lineCode))//here
             error=false;
         else
-            if(SIN.sintaxCin(lineCode))//here
+            if(SIN.sintaxCin(lineCode))
             {
                 string v="";
-                bool bv=false;
+                bool t=true;
                 for(size_t j(0);j<lineCode.size();++j)
                 {
-                    if(!bv){
+                    if(t)
+                    {
                         if(lineCode[j]=='\t'){}
                         else
                         {
                             j+=4;
-                            bv=true;
+                            t=false;
                         }
                     }
                     else
@@ -70,8 +71,57 @@ int main()
                     error=true;
             }
             else
-                if(SIN.sintaxCout(lineCode))//here
-                    error=false;
+                if(SIN.sintaxCout(lineCode))
+                {
+                    string v="";
+                    bool t=true, brk=false;
+                    for(size_t j(0);j<lineCode.size();++j)
+                    {
+                        if(t)
+                        {
+                            if(lineCode[j]=='\t'){}
+                            else
+                            {
+                                j+=5;
+                                t=false;
+                            }
+                        }
+                        else
+                        {
+                            if(lineCode[j]!='<'&&lineCode[j]!=';')
+                            {
+                                v+=lineCode[j];
+                            }
+                            else
+                            {
+                                if(lineCode[j]=='<')
+                                {
+                                    ++j;
+                                    if(!SEM.checarExistencia(v,"",""))
+                                    {
+                                        error=true;
+                                        brk=true;
+                                    }
+                                    v.clear();
+                                }
+                                else
+                                {
+                                    if(lineCode[j]==';')
+                                    {
+                                        if(!SEM.checarExistencia(v,"",""))
+                                            error=true;
+                                        else
+                                            error=false;
+                                        brk=true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if(brk)
+                            break;
+                    }
+                }
                 else
                     if(SIN.sintaxFor(lineCode))//here
                         error=false;
