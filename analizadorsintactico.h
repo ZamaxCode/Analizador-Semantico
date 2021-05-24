@@ -1,9 +1,9 @@
 #ifndef ANALIZADORSINTACTICO_H
 #define ANALIZADORSINTACTICO_H
-#define RegExpIf "(\\t*)?if\\((([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))(<|>|<=|=>|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\)"
+#define RegExpIf "(\\t*)?if\\((([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))(<|>|<=|>=|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\)"
 #define RegExpElse "(\\t*)?else"
-#define RegExpFor "(\\t*)?for\\((int\\s)?[a-zA-Z]([a-zA-Z]|\\d|_)*=\\d\\;([a-zA-Z]([a-zA-Z]|\\d|_)*)(<|>|<=|=>|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\;[a-zA-Z]([a-zA-Z]|\\d|_)*(\\+\\+|\\-\\-)\\)"
-#define RegExpWhile "(\\t*)?while\\(([a-zA-Z]([a-zA-Z]|\\d|_)*)(<|>|<=|=>|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\)"
+#define RegExpFor "(\\t*)?for\\((int\\s)?[a-zA-Z]([a-zA-Z]|\\d|_)*=\\d\\;([a-zA-Z]([a-zA-Z]|\\d|_)*)(<|>|<=|>=|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\;[a-zA-Z]([a-zA-Z]|\\d|_)*(\\+\\+|\\-\\-)\\)"
+#define RegExpWhile "(\\t*)?while\\(([a-zA-Z]([a-zA-Z]|\\d|_)*)(<|>|<=|>=|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\)"
 #define RegExpIniVar "(\\t*)?(int|float|string)\\s[a-zA-Z]([a-zA-Z]|\\d|)*(=(([a-zA-Z]([a-zA-Z]|\\d|_)*)|\".*\"|([+-]?(\\d*[.])?\\d+)*))?;"
 #define RegExpCout "(\\t*)?cout(<<\"(.)*\"|(<<[a-zA-Z]([a-zA-Z]|\\d|_)*))+;"
 #define RegExpCin "(\\t*)?cin>>[a-zA-Z]([a-zA-Z]|\\d|_)*;"
@@ -12,7 +12,7 @@
 #define RegExpBracketOpen "(\\t*)?(\\s*)?\\{(\\s*)?"
 #define RegExpBracketClose "(\\t*)?(\\s*)?\\}(\\s*)?"
 #define RegExpDo "(\\t*)?do\\{"
-#define RegExpWhileDo "(\\t*)?\\}while(\\(([a-zA-Z]([a-zA-Z]|\\d|_)*)(<|>|<=|=>|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\));"
+#define RegExpWhileDo "(\\t*)?\\}while(\\(([a-zA-Z]([a-zA-Z]|\\d|_)*)(<|>|<=|>=|==|!=|&&|\\|\\|)(([a-zA-Z]([a-zA-Z]|\\d|_)*)|([+-]?(\\d*[.])?\\d+))\\));"
 #include <iostream>
 #include <regex>
 
