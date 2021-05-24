@@ -252,7 +252,7 @@ int main()
                                     }
                                 }
                                 else
-                                    if(SIN.sintaxWhile(lineCode))//WHILE ****
+                                    if(SIN.sintaxWhile(lineCode))//WHILE
                                     {
                                         string v1="", v2="";
                                         bool t=true, b1=true, b2=false;
@@ -335,8 +335,56 @@ int main()
                                                         ++contDo;
                                                     }
                                                     else
-                                                        if(SIN.sintaxWhileDo(lineCode))//WHILE (DO) ****
+                                                        if(SIN.sintaxWhileDo(lineCode))//WHILE (DO)
                                                         {
+
+                                                            string v1="", v2="";
+                                                            bool t=true, b1=true, b2=false, good=false;
+                                                            for(size_t j(0);j<lineCode.size();++j)
+                                                            {
+                                                                if(t)
+                                                                {
+                                                                    if(lineCode[j]=='\t'){}
+                                                                    else
+                                                                    {
+                                                                        j+=6;
+                                                                        t=false;
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    if(b1)
+                                                                    {
+                                                                        if(lineCode[j]!='<' && lineCode[j]!='>' && lineCode[j]!='=' && lineCode[j]!='!')
+                                                                            v1+=lineCode[j];
+                                                                        else
+                                                                        {
+                                                                            if(lineCode[j+1]=='=')
+                                                                                ++j;
+                                                                            b1=false;
+                                                                            b2=true;
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                        if(b2)
+                                                                        {
+                                                                            if(lineCode[j]!=')')
+                                                                                v2+=lineCode[j];
+                                                                            else
+                                                                            {
+                                                                                b2=false;
+                                                                            }
+                                                                        }
+                                                                }
+                                                            }
+                                                            if(SEM.checarExistencia(v1,v2,""))
+                                                            {
+                                                                error=false;
+                                                                good=true;
+                                                            }
+                                                            else
+                                                                error=true;
+
                                                             --contDo;
                                                             if(contDo<0)
                                                             {
@@ -346,8 +394,11 @@ int main()
                                                             }
                                                             else
                                                             {
-                                                                error=false;
+                                                                if(good)
+                                                                    error=false;
                                                             }
+
+
                                                         }
                                                         else
                                                             error=true;
